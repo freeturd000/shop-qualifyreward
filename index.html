@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Target — QualifyReward</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #1a2340;
+      --cta:   #1a56db;
+      --cta-h: #1648c0;
+      --text:  #1c1c1e;
+      --muted: #6b7280;
+      --border:#e5e7eb;
+      --bg:    #f5f6fa;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-brand { display: flex; align-items: baseline; gap: 8px; }
+    .header-brand .store-name { color: #fff; font-size: 15px; font-weight: 700; letter-spacing: .04em; }
+    .header-brand .site-name  { color: #7ec8e3; font-size: 14px; font-weight: 500; }
+    .header-menu { color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
+
+    /* ── MAIN ── */
+    main { max-width: 520px; margin: 0 auto; padding: 0 16px 60px; }
+
+    .label {
+      text-align: center;
+      padding-top: 32px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--cta);
+      text-transform: uppercase;
+    }
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      font-weight: 700;
+      margin-top: 6px;
+      color: var(--text);
+      letter-spacing: -.01em;
+    }
+    .subtitle { text-align: center; font-size: 15px; color: var(--muted); margin-top: 6px; }
+
+    /* ── REWARD CARD ── */
+    .card {
+      margin-top: 24px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #cc0000 0%, #a50000 50%, #7a0000 100%);
+      padding: 28px 24px 24px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(204,0,0,.28);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(255,255,255,.13) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card-store { color: #fff; font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .card-type  { color: rgba(255,255,255,.6); font-size: 12px; font-weight: 500; letter-spacing: .04em; margin-top: 2px; }
+
+    .card-logo-strip {
+      margin-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+    .bullseye {
+      width: 54px; height: 54px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .b-outer  { position: absolute; width: 54px; height: 54px; border-radius: 50%; background: #fff; }
+    .b-mid    { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: #cc0000; }
+    .b-inner  { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+    .target-wordmark {
+      font-size: 28px; font-weight: 800;
+      letter-spacing: .08em; text-transform: uppercase; color: #fff;
+    }
+
+    .card-balance-row {
+      display: flex; justify-content: flex-end; align-items: flex-end;
+      margin-top: 24px;
+    }
+    .balance-label  { color: rgba(255,255,255,.6); font-size: 11px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 3px; }
+    .balance-amount { color: #fff; font-size: 38px; font-weight: 700; line-height: 1; }
+
+    /* ── CTA ── */
+    .cta-btn {
+      display: block; width: 100%; margin-top: 20px;
+      background: var(--cta); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+      border: none; border-radius: 14px; padding: 17px;
+      cursor: pointer; text-align: center; text-decoration: none;
+      transition: background .18s, transform .12s; letter-spacing: .01em;
+    }
+    .cta-btn:hover  { background: var(--cta-h); transform: translateY(-1px); }
+    .cta-btn:active { transform: translateY(0); }
+
+    .social-proof {
+      text-align: center; margin-top: 10px; font-size: 13px;
+      color: var(--muted); display: flex; align-items: center;
+      justify-content: center; gap: 5px;
+    }
+    .proof-dot { color: #22c55e; font-size: 10px; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0 28px; }
+
+    .section-label {
+      text-align: center; font-size: 11px; font-weight: 700;
+      letter-spacing: .12em; color: var(--cta);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    h2 { text-align: center; font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+
+    /* ── STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step {
+      background: #fff; border-radius: 14px; padding: 18px 20px;
+      display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .step-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .step-icon.blue  { background: #eff6ff; }
+    .step-icon.red   { background: #fff1f1; }
+    .step-icon.green { background: #f0fdf4; }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    .step-desc  { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-q {
+      width: 100%; background: none; border: none; padding: 17px 20px;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      color: var(--text); text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-arrow { font-size: 12px; color: var(--muted); transition: transform .25s; flex-shrink: 0; margin-left: 12px; }
+    .faq-q[aria-expanded="true"] .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .3s ease, padding .3s;
+      font-size: 14px; color: var(--muted); line-height: 1.6; padding: 0 20px;
+    }
+    .faq-a.open { max-height: 200px; padding: 0 20px 16px; }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta-block {
+      margin-top: 36px; background: var(--navy);
+      border-radius: 18px; padding: 32px 24px; text-align: center;
+    }
+    .bottom-cta-block h3 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .bottom-cta-block p  { color: rgba(255,255,255,.6); font-size: 14px; margin-bottom: 20px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); margin-top: 48px; padding: 24px 20px; text-align: center; }
+    .footer-brand .store-name { color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .06em; }
+    .footer-brand .site-name  { color: #7ec8e3; font-size: 13px; }
+    .footer-links { margin-top: 10px; display: flex; justify-content: center; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,.55); text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: rgba(255,255,255,.35); font-size: 12px; margin-top: 10px; }
+    .disclaimer {
+      max-width: 520px; margin: 16px auto 0; padding: 0 16px;
+      font-size: 11px; color: rgba(255,255,255,.3); text-align: center; line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-brand">
+    <span class="store-name">TARGET</span>
+    <span class="site-name">QualifyReward</span>
+  </div>
+  <span class="header-menu">☰</span>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <p class="label">Store Rewards</p>
+  <h1>Target</h1>
+  <p class="subtitle">Complete simple tasks &amp; unlock exclusive store rewards</p>
+
+  <!-- REWARD CARD -->
+  <div class="card">
+    <div class="card-store">Target</div>
+    <div class="card-type">Member Rewards</div>
+    <div class="card-logo-strip">
+      <div class="bullseye">
+        <div class="b-outer"></div>
+        <div class="b-mid"></div>
+        <div class="b-inner"></div>
+      </div>
+      <span class="target-wordmark">TARGET</span>
+    </div>
+    <div class="card-balance-row">
+      <div>
+        <div class="balance-label">Reward Value</div>
+        <div class="balance-amount">$750</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <a class="cta-btn" href="https://trksy.org/aff_c?offer_id=250&aff_id=172423" target="_blank" rel="noopener">
+    Continue →
+  </a>
+  <p class="social-proof">
+    <span class="proof-dot">●</span>
+    1k+ members earning store rewards
+  </p>
+
+  <hr class="divider" />
+
+  <!-- HOW IT WORKS -->
+  <p class="section-label">Simple Process</p>
+  <h2>How It Works</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon blue">✉️</div>
+      <div>
+        <div class="step-title">Register Your Email</div>
+        <div class="step-desc">Join the rewards program for exclusive member perks</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon red">🎯</div>
+      <div>
+        <div class="step-title">Complete 4–5 Offers</div>
+        <div class="step-desc">The more you complete, the more you earn</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon green">🎁</div>
+      <div>
+        <div class="step-title">Claim Your Reward</div>
+        <div class="step-desc">Redeem towards groceries, household items &amp; more</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- FAQ -->
+  <p class="section-label">Questions</p>
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq">
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        How long do tasks typically take?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Most tasks can be completed in just a few minutes each. The full verification process typically takes 5–7 days once all required offers are submitted.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        What kind of tasks will I be doing?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Tasks include things like trying partner services, signing up for free trials, and completing short surveys. Some offers may require a small purchase or subscription.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        When will I receive my reward?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        After completing the required number of offers and passing the verification process, rewards are typically delivered within 6–10 days of registration.
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta-block">
+    <h3>Ready to Start Earning?</h3>
+    <p>Join thousands of members already earning store rewards with QualifyReward</p>
+    <a class="cta-btn" href="https://trksy.org/aff_c?offer_id=250&aff_id=172423" target="_blank" rel="noopener">
+      Continue →
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="store-name">TARGET &nbsp;</span>
+    <span class="site-name">QualifyReward</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://contact.uplevelrewards.com/policies/terms?utm_source=footer-partial" target="_blank" rel="noopener">Terms</a>
+    <a href="https://contact.uplevelrewards.com/policies/privacy?utm_source=footer-partial" target="_blank" rel="noopener">Privacy</a>
+    <a href="https://contact.uplevelrewards.com/contact.aspx?utm_source=footer-partial" target="_blank" rel="noopener">Contact</a>
+  </div>
+  <p class="footer-copy">© 2026 QualifyReward. All rights reserved.</p>
+  <p class="disclaimer">
+    Available to US residents only. You must complete the required number of sponsored offers to qualify.
+    This promotion is not sponsored or endorsed by Target. Offer subject to program requirements.
+  </p>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!expanded) {
+      btn.setAttribute('aria-expanded', 'true');
+      answer.classList.add('open');
+    }
+  }
+</script>
+
+</body>
+</html>
