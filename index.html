@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Target Rewards — QualifyReward</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #1a2340;
+      --red:   #cc0000;
+      --cta:   #1a56db;
+      --cta-h: #1648c0;
+      --text:  #1c1c1e;
+      --muted: #6b7280;
+      --border:#e5e7eb;
+      --bg:    #f5f6fa;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-brand .store-name {
+      color: #fff; font-size: 15px; font-weight: 700; letter-spacing: .08em;
+    }
+    .header-menu { color: #fff; font-size: 22px; cursor: pointer; line-height: 1; }
+
+    /* ── MAIN ── */
+    main { max-width: 520px; margin: 0 auto; padding: 0 16px 60px; }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      font-weight: 700;
+      margin-top: 36px;
+      color: var(--text);
+      letter-spacing: -.01em;
+    }
+
+    /* ── LOGO DISPLAY (replaces card) ── */
+    .logo-display {
+      margin-top: 28px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 36px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+      border: 1px solid var(--border);
+    }
+
+    /* Target bullseye — correct colors: red outer, white ring, red center */
+    .bullseye {
+      width: 88px; height: 88px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .b-outer { position: absolute; width: 88px; height: 88px; border-radius: 50%; background: var(--red); }
+    .b-mid   { position: absolute; width: 56px; height: 56px; border-radius: 50%; background: #fff; }
+    .b-inner { position: absolute; width: 22px; height: 22px; border-radius: 50%; background: var(--red); }
+
+    .logo-wordmark {
+      margin-top: 14px;
+      font-size: 22px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .logo-divider {
+      width: 48px; height: 2px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+
+    .logo-reward-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .logo-reward-amount {
+      font-size: 52px; font-weight: 700; line-height: 1;
+      color: var(--text);
+    }
+
+    /* ── CTA ── */
+    .cta-btn {
+      display: block; width: 100%; margin-top: 20px;
+      background: var(--cta); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+      border: none; border-radius: 14px; padding: 17px;
+      cursor: pointer; text-align: center; text-decoration: none;
+      transition: background .18s, transform .12s; letter-spacing: .01em;
+    }
+    .cta-btn:hover  { background: var(--cta-h); transform: translateY(-1px); }
+    .cta-btn:active { transform: translateY(0); }
+
+    .social-proof {
+      text-align: center; margin-top: 10px; font-size: 13px;
+      color: var(--muted); display: flex; align-items: center;
+      justify-content: center; gap: 5px;
+    }
+    .proof-dot { color: #22c55e; font-size: 10px; }
+
+    /* ── DIVIDER ── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0 28px; }
+
+    h2 { text-align: center; font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+
+    /* ── STEPS ── */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step {
+      background: #fff; border-radius: 14px; padding: 18px 20px;
+      display: flex; align-items: flex-start; gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--text); }
+    .step-desc  { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+    /* ── FAQ ── */
+    .faq { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .faq-q {
+      width: 100%; background: none; border: none; padding: 17px 20px;
+      font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+      color: var(--text); text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-arrow { font-size: 12px; color: var(--muted); transition: transform .25s; flex-shrink: 0; margin-left: 12px; }
+    .faq-q[aria-expanded="true"] .faq-arrow { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .3s;
+      font-size: 14px; color: var(--muted); line-height: 1.65; padding: 0 20px;
+    }
+    .faq-a.open { max-height: 300px; padding: 0 20px 16px; }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta-block {
+      margin-top: 36px; background: var(--navy);
+      border-radius: 18px; padding: 32px 24px; text-align: center;
+    }
+    .bottom-cta-block h3 { color: #fff; font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+    .bottom-cta-block .cta-btn { margin-top: 0; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); margin-top: 48px; padding: 24px 20px; text-align: center; }
+    .footer-brand .store-name { color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .06em; }
+    .footer-brand .site-name  { color: #7ec8e3; font-size: 13px; }
+    .footer-links { margin-top: 10px; display: flex; justify-content: center; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,.55); text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: rgba(255,255,255,.35); font-size: 12px; margin-top: 10px; }
+    .disclaimer {
+      max-width: 520px; margin: 16px auto 0; padding: 0 16px;
+      font-size: 11px; color: rgba(255,255,255,.3); text-align: center; line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER — text only, no logo -->
+<header>
+  <div class="header-brand">
+    <span class="store-name">TARGET</span>
+  </div>
+  <span class="header-menu">☰</span>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <!-- CLEAN LOGO DISPLAY -->
+  <div class="logo-display">
+    <div class="bullseye">
+      <div class="b-outer"></div>
+      <div class="b-mid"></div>
+      <div class="b-inner"></div>
+    </div>
+    <div class="logo-wordmark">TARGET</div>
+    <div class="logo-divider"></div>
+    <div class="logo-reward-label">Reward Value</div>
+    <div class="logo-reward-amount">$750</div>
+  </div>
+
+  <!-- CTA -->
+  <a class="cta-btn" href="https://trksy.org/aff_c?offer_id=250&aff_id=172423" target="_blank" rel="noopener">
+    Claim Your $750 Target Discount
+  </a>
+  <p class="social-proof">
+    <span class="proof-dot">●</span>
+    Join 1k+ members that have claimed their store rewards
+  </p>
+
+  <hr class="divider" />
+
+  <!-- HOW IT WORKS -->
+  <h2>How It Works</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Sign Up With Your Email</div>
+        <div class="step-desc">Enter your email to get started.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Answer a Few Questions</div>
+        <div class="step-desc">Most people finish in 10 minutes.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Get Your $750 Reward</div>
+        <div class="step-desc">Use it at Target on groceries, clothes, or anything you want.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- FAQ -->
+  <h2>Questions? We've Got Answers.</h2>
+
+  <div class="faq">
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        What is this?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        We give you $750 to spend at Target. In return, you share your thoughts on products. Brands pay us for that feedback. We pass the value on to you.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        What do I get?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        You get $750 to use at Target. Groceries, clothes, household items — anything they sell. The reward is yours to spend how you want.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        How does it work?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Sign up. Answer a few questions. Get your $750 reward. Most people finish in 10 minutes.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Is this free?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Signing up is free. Some steps have optional paid offers. You choose which ones to do. The more you complete, the faster your reward unlocks.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        When do I get my reward?
+        <span class="faq-arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Within 6 to 10 days after you finish.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta-block">
+    <h3>Ready to Claim Your Discount?</h3>
+    <a class="cta-btn" href="https://trksy.org/aff_c?offer_id=250&aff_id=172423" target="_blank" rel="noopener">
+      Claim Your Discount Here
+    </a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <span class="store-name">TARGET &nbsp;</span>
+    <span class="site-name">QualifyReward</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://contact.uplevelrewards.com/policies/terms?utm_source=footer-partial" target="_blank" rel="noopener">Terms</a>
+    <a href="https://contact.uplevelrewards.com/policies/privacy?utm_source=footer-partial" target="_blank" rel="noopener">Privacy</a>
+    <a href="https://contact.uplevelrewards.com/contact.aspx?utm_source=footer-partial" target="_blank" rel="noopener">Contact</a>
+  </div>
+  <p class="footer-copy">© 2026 QualifyReward. All rights reserved.</p>
+  <p class="disclaimer">
+    Available to US residents only. You must complete the required number of sponsored offers to qualify.
+    This promotion is not sponsored or endorsed by Target. Offer subject to program requirements.
+  </p>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!expanded) {
+      btn.setAttribute('aria-expanded', 'true');
+      answer.classList.add('open');
+    }
+  }
+</script>
+
+</body>
+</html>
